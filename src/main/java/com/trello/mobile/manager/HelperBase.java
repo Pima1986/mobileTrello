@@ -1,6 +1,7 @@
 package com.trello.mobile.manager;
 
 import com.google.common.io.Files;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,49 +15,49 @@ import java.io.IOException;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class HelperBase {
-    WebDriver wd;
+    AppiumDriver driver;
     private Object TakesScreenshot;
 
 
-    public HelperBase(WebDriver wd) {
-        this.wd = wd;
+    public HelperBase(AppiumDriver driver) {
+        this.driver = driver;
     }
 
     public void type(By locator, String text) {
         if (text != null) {
             click(locator);
-            wd.findElement(locator).clear();
-            wd.findElement(locator).sendKeys(text);
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
         }
     }
 
     public void waitForElementAndClick(By locator) {
-        new WebDriverWait(wd, 20).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
     }
 
     public void click(By locator) {
-        new WebDriverWait(wd, 20).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
+        new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
         //no need line 30, can be deleted
         /*wd.findElement(locator).click();*/
 
     }
 
     public void returnHomePage() {
-        wd.navigate().to("https://trello.com/danielpimshteyn/boards");
+        driver.navigate().to("https://trello.com/danielpimshteyn/boards");
     }
 
     public boolean isElementPresent(By locator) {
-        return wd.findElements(locator).size() > 0;
+        return driver.findElements(locator).size() > 0;
     }
 
     public void waitForElementAndType(By locator, String text) {
-        new WebDriverWait(wd, 20).until(presenceOfElementLocated(locator)).
+        new WebDriverWait(driver, 20).until(presenceOfElementLocated(locator)).
                 sendKeys(text);
 
     }
 
     public void takeScreenshot() {
-        File tmp = ((TakesScreenshot) wd).getScreenshotAs(OutputType.FILE);
+        File tmp = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File screenshot = new File("screen " + System.currentTimeMillis() + ".png");
         try {
             Files.copy(tmp, screenshot);
@@ -66,6 +67,6 @@ public class HelperBase {
     }
 
     public void refreshPage() {
-        wd.navigate().refresh();
+        driver.navigate().refresh();
     }
 }

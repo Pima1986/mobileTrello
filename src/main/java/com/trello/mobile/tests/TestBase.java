@@ -39,7 +39,7 @@ public class TestBase {
         logger.info("Stop test "+m.getName());
     }
 
-    @AfterSuite
+    @AfterSuite(enabled =  false)
     public void tearDown() throws InterruptedException {
         app.stop();
     }

@@ -1,21 +1,21 @@
 package com.trello.mobile.manager;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class SessionHelper extends HelperBase{
+public class SessionHelper extends HelperBase {
 
 
-    public SessionHelper(WebDriver wd) {
-        super(wd);
+    public SessionHelper(AppiumDriver driver) {
+        super(driver);
     }
 
-    public void initLogin()
-    {
-        click(By.cssSelector("[href='/login']"));
+    public void initLogin() {
+        waitForElementAndClick(By.id("log_in_button"));
     }
+
     public void confirmLogin() {
-        //wait.until(presenceOfElementLocated(By.id("login-submit"))).click();
+       //wait.until(presenceOfElementLocated(By.id("login-submit"))).click();
         click(By.id("login-submit"));
     }
 
