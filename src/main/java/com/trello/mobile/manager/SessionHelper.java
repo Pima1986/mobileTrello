@@ -11,12 +11,20 @@ public class SessionHelper extends HelperBase {
     }
 
     public void initLogin() {
-        waitForElementAndClick(By.id("log_in_button"));
+        waitForElementAndClick(By.xpath("//*[@resource-id='com.trello:id/log_in_button']"));
     }
 
     public void confirmLogin() {
        //wait.until(presenceOfElementLocated(By.id("login-submit"))).click();
         click(By.id("login-submit"));
+    }
+
+    public void fillLoginForm(String userEmail, String password) throws InterruptedException {
+        type(By.xpath("//*[@resource-id='com.trello:id/user']"), userEmail);
+        click(By.xpath("//*[@resource-id='android:id/button1']"));
+        Thread.sleep(7000);
+        waitForElementAndClick(By.xpath("//*[@class='android.view.View']"));
+        //type(By.id("password"), password);
     }
 
     public void fillLoginFormAtlassian(String userEmail, String password) throws InterruptedException {
