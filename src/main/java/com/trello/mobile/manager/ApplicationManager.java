@@ -19,6 +19,7 @@ public class ApplicationManager {
     /*BoardHelper board;
     GroupHelper group;*/
     SessionHelper session;
+    WelcomePage welcome;
     private WebDriverWait wait;
     String browser;
     //ProfileHelper profile;
@@ -53,6 +54,7 @@ public class ApplicationManager {
                 FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         driver.navigate().to(properties.getProperty("web.baseURL"));*/
         session = new SessionHelper(driver);
+        welcome = new WelcomePage(driver);
         /*session.login(properties.getProperty("web.user"), properties.getProperty("web.pwd"));*/
        /* board = new BoardHelper(wd);
         group = new GroupHelper(wd);
@@ -83,5 +85,9 @@ public class ApplicationManager {
 
     public WebDriverWait getWait() {
         return wait;
+    }
+
+    public WelcomePage getWelcome() {
+        return welcome;
     }
 }

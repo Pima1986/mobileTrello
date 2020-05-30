@@ -1,0 +1,4 @@
+14:59:57.131 [main] INFO  c.t.m.manager.ApplicationManager - Initianalisation driver
+15:00:23.790 [main] INFO  c.t.m.manager.ApplicationManager - Ready!
+15:00:23.910 [main] INFO  com.trello.mobile.tests.TestBase - Start test swipePageTest with parameters: []
+15:00:42.755 [main] INFO  com.trello.mobile.tests.TestBase - Stop test swipePageTest
