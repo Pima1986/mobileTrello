@@ -15,23 +15,38 @@ public class SessionHelper extends HelperBase {
     }
 
     public void confirmLogin() {
-       //wait.until(presenceOfElementLocated(By.id("login-submit"))).click();
+        //wait.until(presenceOfElementLocated(By.id("login-submit"))).click();
         click(By.id("login-submit"));
     }
 
     public void fillLoginForm(String userEmail, String password) throws InterruptedException {
-        type(By.xpath("//*[@resource-id='com.trello:id/user']"), userEmail);
-        click(By.xpath("//*[@resource-id='android:id/button1']"));
-        Thread.sleep(7000);
-        waitForElementAndClick(By.xpath("//*[@class='android.view.View']"));
+        typeEmail(userEmail);
+        proceedToAtlassian();
+        chooseAccountAndContinue();
+        waitForElementLocatedAndType(By.xpath("//*[@resource-id='password']"), password, 60);
+
         //type(By.id("password"), password);
+    }
+
+    private void chooseAccountAndContinue() {
+        waitForElementAndClick(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget" +
+                ".LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android" +
+                ".widget.FrameLayout/android.widget.FrameLayout[2]/android.view.View"));
+    }
+
+    private void proceedToAtlassian() {
+        click(By.xpath("//*[@resource-id='android:id/button1']"));
+    }
+
+    private void typeEmail(String userEmail) {
+        type(By.xpath("//*[@resource-id='com.trello:id/user']"), userEmail);
     }
 
     public void fillLoginFormAtlassian(String userEmail, String password) throws InterruptedException {
         type(By.name("user"), userEmail);
         click(By.cssSelector("[value='Log in with Atlassian']"));
         Thread.sleep(1000);
-        type(By.id("password"), password);
+
     }
 
 

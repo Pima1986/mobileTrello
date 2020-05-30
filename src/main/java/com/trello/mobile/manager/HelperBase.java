@@ -2,15 +2,13 @@ package com.trello.mobile.manager;
 
 import com.google.common.io.Files;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -31,6 +29,10 @@ public class HelperBase {
         }
     }
 
+    public void waitForElementLocatedAndType(By locator, String text, int timeout) {
+        new WebDriverWait(driver, timeout).until(ExpectedConditions.presenceOfElementLocated(locator)).sendKeys();
+    }
+
     public void waitForElementAndClick(By locator) {
         new WebDriverWait(driver, 20).until(ExpectedConditions.presenceOfElementLocated(locator)).click();
     }
@@ -48,6 +50,12 @@ public class HelperBase {
 
     public boolean isElementPresent(By locator) {
         return driver.findElements(locator).size() > 0;
+    }
+
+    public boolean waitForElementsPresent(By locator, int timeout) {
+        List<WebElement> elements = new WebDriverWait(driver, timeout)
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        return elements.size() > 0;
     }
 
     public void waitForElementAndType(By locator, String text) {

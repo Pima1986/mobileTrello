@@ -1,0 +1,6 @@
+11:30:01.295 [main] INFO  c.t.m.manager.ApplicationManager - Initianalisation driver
+11:30:25.935 [main] INFO  c.t.m.manager.ApplicationManager - Ready!
+11:30:26.030 [main] INFO  com.trello.mobile.tests.TestBase - Start test testLogin with parameters: []
+11:30:42.673 [main] INFO  com.trello.mobile.tests.TestBase - Stop test testLogin
+11:30:42.702 [main] INFO  com.trello.mobile.tests.TestBase - Start test testAppOpened with parameters: []
+11:30:42.709 [main] INFO  com.trello.mobile.tests.TestBase - Stop test testAppOpened
